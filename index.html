@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/e6917c870f.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+    <script defer type="module" src="src/js/script.js"></script>
+    <!-- <link rel="stylesheet" href="styles.scss" /> -->
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="login">
+        <div class="login_text">Welcome!</div>
+        <div class="login_imgC">
+          <img src="src/img/logo.png" alt="logo" class="login_img" />
+        </div>
+
+        <form action="" class="login_form">
+          <span class="login_form-text"></span>
+          <input
+            type="text"
+            placeholder="user"
+            class="login_input login_input-user"
+          />
+          <div class="login_pwcontainer">
+            <input
+              type="password"
+              placeholder="password"
+              class="login_input login_pwcontainer-pw login_input-pw"
+            />
+            <div class="fas_container">
+              <i class="fas fa-eye-slash"></i><i class="fas fa-eye hidden"></i>
+            </div>
+          </div>
+
+          <button class="login_btn">&rarr;</button>
+        </form>
+        <div class="login_logout-mom hidden">
+          <button class="login_logout">Log Out</button>
+        </div>
+      </nav>
+    </header>
+    <!-- LOGIN FOR USERES -->
+
+    <main class="main">
+      <section class="menu">
+        <div class="menu_types">
+          <ul class="menu_types-ul"></ul>
+        </div>
+      </section>
+
+      <section class="order">
+        <div class="order_text-container">
+          <span class="order_text order_text-empty">Your Order is Empty</span>
+          <span class="order_text order_text-full hidden">Your order!</span>
+          <button class="order_clearall btn-clearall">Clear</button>
+        </div>
+        <form action="#" class="order_form">
+          <input
+            type="text"
+            id="name"
+            placeholder="Your Name"
+            class="order_form-input order_form-buyer"
+          />
+          <input
+            type="email"
+            id="email"
+            placeholder="Your Email"
+            class="order_form-input order_form-email"
+          />
+        </form>
+
+        <div class="order_buy">
+          <div class="span_total-mom">
+            <span class="span_total-text">Delivery Cost</span>
+            <span class="span_total-numbers order_buy-delivery">0zł</span>
+          </div>
+
+          <div class="span_total-mom">
+            <span class="span_total-text">Total Price</span>
+            <span class="span_total-numbers order_buy-price">0zł</span>
+          </div>
+          <button class="order_buy-btn btn-buy">ORDER</button>
+        </div>
+      </section>
+
+      <section class="adding hidden">
+        <form action="" class="adding_form">
+          <p class="adding_form-text">Add Burger to the Offer</p>
+
+          <div class="adding_dropzone">
+            <span class="adding_dropzone-prompt"
+              >Drop file here or click to upload</span
+            >
+            <!-- <div class="adding_dropzone-thumb" data-label="myfile.txt"></div> -->
+            <input type="file" name="myFile" class="adding_dropzone-input" />
+          </div>
+
+          <div class="adding_select-cont">
+            <button class="adding_select-addbtn btn-add">+</button>
+            <input
+              type="text"
+              placeholder="Add Type"
+              class="adding_select-add adding_input hidden"
+            />
+            <button class="adding_select-submit hidden">Add</button>
+          </div>
+
+          <input
+            type="text"
+            placeholder="Name"
+            class="adding_input adding_input-name"
+          />
+
+          <input
+            type="text"
+            placeholder="Image URL"
+            class="adding_input adding_input-img"
+          />
+
+          <div class="adding_input-ingr--mom">
+            <input
+              type="text"
+              placeholder="Ingredient"
+              class="adding_input adding_input-ingr"
+            />
+          </div>
+
+          <button class="adding_input-ingr--add btn-add">+</button>
+
+          <input
+            type="text"
+            placeholder="Price"
+            class="adding_input adding_input-price"
+          />
+
+          <button class="adding_btn">&rarr;</button>
+        </form>
+
+        <div class="helper">
+          <span class="array"></span>
+          <span class="counter"></span>
+        </div>
+      </section>
+
+      <section class="chef hidden">
+        <div class="order_text-container chef_text-container">
+          <span class="order_text chef_text-no">No Orders Yet!</span>
+          <span class="order_text chef_text-yes hidden">We have an Order!</span>
+          <button class="chef_clearall btn-clearall">ClearAll</button>
+        </div>
+
+        <div class="chef_total">
+          <div class="span_total-mom">
+            <span class="span_total-text">Total Orders</span>
+            <span class="span_total-numbers">3</span>
+          </div>
+
+          <div class="span_total-mom">
+            <span class="span_total-text">Total Meals to Prepare</span>
+            <span class="span_total-numbers">8</span>
+          </div>
+
+          <div class="span_total-mom">
+            <span class="span_total-text">Total Earnings</span>
+            <span class="span_total-numbers">32</span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+  </body>
+</html>
+<!-- HTML !-->
