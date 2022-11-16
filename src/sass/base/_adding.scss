@@ -1,0 +1,131 @@
+.adding {
+    padding: 5rem;
+  
+    &_dropzone {
+      width: 20rem;
+      height: 20rem;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      color: #cccccc;
+      border: 4px dashed #c40000;
+      border-radius: 10px;
+      overflow: hidden;
+  
+      &-over {
+        border-style: solid;
+      }
+  
+      &-input {
+        display: none;
+      }
+  
+      &-thumb {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #cccccc;
+        background-size: cover;
+        position: relative;
+        z-index: 999999;
+  
+        &::after {
+          content: attr(data-label);
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 5px 0;
+          color: #ffffff;
+          background-color: rgba(0, 0, 0, 0.75);
+          font-size: 14px;
+          text-align: center;
+        }
+      }
+    }
+  
+    &_form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &-text {
+        font-size: 3rem;
+      }
+    }
+  
+    &_select {
+      border-radius: 2rem;
+      height: 4rem;
+      border: none;
+      margin: 1.5rem;
+      padding-left: 1.5rem;
+      width: 11rem;
+  
+      &-add {
+        width: 11rem !important;
+      }
+    }
+  
+    &_input {
+      border-radius: 2rem;
+      height: 4rem;
+      border: none;
+      margin: 1.5rem;
+      padding-left: 3rem;
+      width: 14rem;
+      transition: 0.7s;
+  
+      &:focus {
+        transform: scale(1.1);
+      }
+  
+      &:focus::placeholder {
+        color: transparent;
+      }
+  
+      &-img {
+        margin-bottom: 2.5rem !important;
+      }
+      &-ingr {
+        margin: 0.5rem !important;
+        &--ingrbtncon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          margin-top: auto;
+        }
+  
+        &--mom {
+          display: flex;
+          flex-direction: column;
+        }
+  
+        &--add {
+          margin-top: auto;
+        }
+  
+        &--delete {
+          position: absolute;
+          left: -1.5rem;
+        }
+      }
+    }
+  
+    &_btn {
+      border-radius: 100%;
+      height: 4rem;
+      width: 5rem;
+      margin-top: 3rem;
+  
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      background-color: white;
+      margin-left: 1rem;
+    }
+  }

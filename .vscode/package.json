@@ -1,0 +1,22 @@
+{
+  "name": "burger-app",
+  "version": "1.0.0",
+  "description": "burger app page",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass src/sass/styles.scss styles.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bienieek/Burger-App.git"
+  },
+  "author": "Mateusz Bieniek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bienieek/Burger-App/issues"
+  },
+  "homepage": "https://github.com/bienieek/Burger-App#readme",
+  "dependencies": {
+    "node-sass": "^8.0.0"
+  }
+}

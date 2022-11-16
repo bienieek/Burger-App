@@ -1,4 +1,5 @@
 import { orders, clearAll } from "./orderProces.js";
+import * as variables from "./variables.js";
 
 const order = document.querySelector(".order");
 const chefTextCon = document.querySelector(".chef_text-container");

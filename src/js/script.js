@@ -1,6 +1,9 @@
 import * as admin from "./views/adminView.js";
 import * as orderProces from "./views/orderProces.js";
 import * as chefView from "./views/chefView.js";
+import * as variables from "./views/variables.js";
+
+
 
 const btnLogin = document.querySelector(".login_btn");
 const inputLoginUser = document.querySelector(".login_input-user");
@@ -39,7 +42,7 @@ const accounts = [chefAcc, adminAcc];
 
 // Funkcja ktora pozwala wpisac mealType i displayuje wszystkie dania z tego rodzaju
 export const mealTypeFunction = (mealType) => {
-  admin.meals
+  variables.meals
     .filter((meal) => meal.type === mealType)
     .forEach((meal, i) => {
       const html = `

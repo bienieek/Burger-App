@@ -1,4 +1,5 @@
 import * as script from "../script.js";
+import * as variables from "./variables.js";
 
 const addingBtn = document.querySelector(".adding_btn");
 const addingInputName = document.querySelector(".adding_input-name");
@@ -19,64 +20,7 @@ const menuTypesUl = document.querySelector(".menu_types-ul");
 // const dropZoneElement = document.querySelector(".adding_dropzone");
 // const inputElement = document.querySelector(".adding_dropzone-input");
 
-// MENU
-export const cheeseBurger = {
-  type: "Burger",
-  price: "22",
-  name: "Cheese Burger",
-  ingredients: ["beef", "cheese"],
-  photo: "./src/img/BurgerSerowy.jpg",
-};
 
-export const baconCheeseBurger = {
-  type: "Burger",
-  price: "24",
-  name: "BaconCheese Burger",
-  ingredients: ["beef", "cheese", "bacon"],
-  photo: "./src/img/BurgerSerowy.jpg",
-};
-
-export const blueCheeseBurger = {
-  type: "Burger",
-  price: "24",
-  name: "BlueCheese Burger",
-  ingredients: ["beef", "bluecheese"],
-  photo: "./src/img/BurgerSerowy.jpg",
-};
-
-export const mexicoBurger = {
-  type: "Burger",
-  price: "24",
-  name: "Mexico Burger",
-  ingredients: ["beef", "jalapeno"],
-  photo: "./src/img/BurgerSerowy.jpg",
-};
-
-export const colaDrink = {
-  type: "Drink",
-  price: "7",
-  name: "Cola",
-  ingredients: [],
-  photo: "./src/img/BurgerSerowy.jpg",
-};
-
-export const fantaDrink = {
-  type: "Drink",
-  price: "7",
-  name: "Fanta",
-  ingredients: [],
-  photo: "./src/img/BurgerSerowy.jpg",
-};
-
-// MENU IN ONE PLACE  -- funkcja drukuje wszystkie z pierwszwgo napotkanego rodzaju
-export const meals = [
-  cheeseBurger,
-  colaDrink,
-  baconCheeseBurger,
-  blueCheeseBurger,
-  fantaDrink,
-  mexicoBurger,
-];
 
 document.querySelectorAll(".adding_dropzone-input").forEach((inputElement) => {
   const dropZoneElement = inputElement.closest(".adding_dropzone");
@@ -198,7 +142,7 @@ export let mealTypes = [];
 export const getMealTypesMenu = () => {
   const mealTypesWithDupl = [];
 
-  meals.forEach((meal) => {
+  variables.meals.forEach((meal) => {
     for (const [key, value] of Object.entries(meal)) {
       if (key === "type") {
         mealTypesWithDupl.push(value);
@@ -258,10 +202,10 @@ export const addBurger = (type, name, photo, price, ingrs) => {
     photo: photo,
   };
 
-  meals.push(newBurger);
+  variables.meals.push(newBurger);
   clearMenu();
   script.displayMenu();
-  console.log(meals);
+  console.log(variables.meals);
 };
 
 // Displaying MealTypes
@@ -382,11 +326,11 @@ export const menuAddEventListenerBtnDelete = () => {
 
         const delMealName = btnDel.dataset.mealName;
 
-        const delMealIndex = meals.findIndex(
+        const delMealIndex = variables.meals.findIndex(
           (meal) => meal.name === delMealName
         );
 
-        meals.splice(delMealIndex, 1);
+        variables.meals.splice(delMealIndex, 1);
         clearMenu();
         script.displayMenu();
       }

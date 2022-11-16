@@ -1,5 +1,5 @@
 import * as admin from "./adminView.js";
-
+import * as variables from "./variables.js";
 const menu = document.querySelector(".menu");
 const order = document.querySelector(".order");
 const orderBurger = document.querySelector(".order_burger");
@@ -11,6 +11,8 @@ const orderTextEmpty = document.querySelector(".order_text-empty");
 const orderTextFull = document.querySelector(".order_text-full");
 const orderTextCon = document.querySelector(".order_text-container");
 
+
+
 export let orders = [];
 
 // Adding Burger to ORDER
@@ -21,7 +23,7 @@ menu.addEventListener("click", function (e) {
     const mealName = e.target.closest(".menu_burger").dataset.mealName;
 
     // szukamy w meals mealName i dodajemy element do orders
-    const orderedMeal = admin.meals.find((e) => e.name === mealName);
+    const orderedMeal = variables.meals.find((e) => e.name === mealName);
 
     orders.push(orderedMeal);
     displayOrdersBuyer();
