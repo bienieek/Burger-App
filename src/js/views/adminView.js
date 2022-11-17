@@ -1,6 +1,6 @@
 import * as script from "../script.js";
 import * as variables from "./variables.js";
-
+import * as functions from "./functions.js";
 const addingBtn = document.querySelector(".adding_btn");
 const addingInputName = document.querySelector(".adding_input-name");
 
@@ -31,7 +31,7 @@ document.querySelectorAll(".adding_dropzone-input").forEach((inputElement) => {
 
   inputElement.addEventListener("change", (e) => {
     if (inputElement.files.length) {
-      updateThumbnail(dropZoneElement, inputElement.files[0]);
+      functions.updateThumbnail(dropZoneElement, inputElement.files[0]);
     }
   });
 
@@ -53,7 +53,7 @@ document.querySelectorAll(".adding_dropzone-input").forEach((inputElement) => {
 
     if (e.dataTransfer.files.length) {
       inputElement.files = e.dataTransfer.files;
-      updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+      functions.updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
     }
 
     dropZoneElement.classList.remove("adding_dropzone-over");
@@ -63,79 +63,11 @@ document.querySelectorAll(".adding_dropzone-input").forEach((inputElement) => {
  *
  * @param {HTMLElement} dropZoneElement
  * @param {File} file
- */
+*/
 
-const updateThumbnail = (dropZoneElement, file) => {
-  let thumbnailElement = dropZoneElement.querySelector(
-    ".adding_dropzone-thumb"
-  );
-  // First time remove prompt
-  if (dropZoneElement.querySelector(".adding_dropzone-prompt")) {
-    dropZoneElement.querySelector(".adding_dropzone-prompt").remove();
-  }
-
-  if (!thumbnailElement) {
-    // First time no thumb, so create one
-    thumbnailElement = document.createElement("div");
-    thumbnailElement.classList.add("adding_dropzone-thumb");
-    dropZoneElement.appendChild(thumbnailElement);
-  }
-
-  thumbnailElement.dataset.label = file.name; // Take data from dragged image, and set it as thumb data-label (data that holds file name, and set ::after cocntent)
-
-  console.log(file.type);
-
-  if (file.type.startsWith("image/")) {
-    let reader = new FileReader();
-
-    // reader.addEventListener("load", () => {
-    //   thumbnailElement.style.backgroundImage = `url("${reader.result}")`;
-    //   addingInputImg.value = thumbnailElement.style.backgroundImage;
-
-    //   let base64 = reader.result.split(",")[1];
-
-    //   const body = {
-    //     generated_at: new Date().toISOString(),
-    //     png: base64,
-    //   };
-
-    //   console.log(body);
-
-    //   fetch("/src/js/views/upload.php", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(body),
-    //   });
-    // });
-
-    // reader.readAsDataURL(file);
-  }
-};
-
-// CCLEAR ALL INPUT FIELDS
-const clearInputs = () => {
-  document.querySelectorAll(".adding_input").forEach((e) => (e.value = ""));
-};
-
-function isNumeric(str) {
-  if (typeof str != "string") return false;
-  return !isNaN(str) && !isNaN(parseFloat(str));
-}
-
-function titleCase(str) {
-  let splitStr = str.toLowerCase().split(" ");
-  for (let i = 0; i < splitStr.length; i++) {
-    splitStr[i] =
-      splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
-  }
-
-  return splitStr.join(" ");
-}
-
-// filled by every types of available meals
+// programitacally filled by getMealTypes
 export let mealTypes = [];
+
 
 // Programitally get all meal types from exisitn meals
 
@@ -153,14 +85,10 @@ export const getMealTypesMenu = () => {
   mealTypes = [...new Set(mealTypesWithDupl)];
 };
 
-//Clear all displayedTypes
-export const clearMenuTypes = () => {
-  document.querySelectorAll(".menu_types-li").forEach((e) => e.remove());
-};
-
 // displating Meal types to Menu_types
 export const displayMealTypesMenu = () => {
-  clearMenuTypes();
+  functions.clearMenuTypes();
+
 
   // Display Element ALL
   if (mealTypes) {
@@ -170,7 +98,7 @@ export const displayMealTypesMenu = () => {
     const showAllMenu = document.querySelector(".show_all-menu");
 
     showAllMenu.addEventListener("click", () => {
-      clearMenu();
+      functions.clearMenuAdmin();
       script.displayMenu();
     });
   }
@@ -184,10 +112,11 @@ export const displayMealTypesMenu = () => {
     menuType.addEventListener("click", (e) => {
       const menuType = e.target.textContent;
 
-      clearMenu();
+      functions.clearMenuAdmin();
       script.mealTypeFunction(menuType);
     });
   });
+  console.log(mealTypes)
 };
 
 // displayMealTypesMenu();
@@ -203,28 +132,14 @@ export const addBurger = (type, name, photo, price, ingrs) => {
   };
 
   variables.meals.push(newBurger);
-  clearMenu();
+  functions.clearMenuAdmin();
   script.displayMenu();
   console.log(variables.meals);
 };
 
-// Displaying MealTypes
 
-const hideSubmitClearInput = () => {
-  addingSelectSubmit.classList.add("hidden");
-  addingSelectInput.value = "";
-};
 
-// If there is some text in <input> field than show AddBtn
-const showSubmit = () => {
-  addingSelectInput.addEventListener("input", (e) => {
-    if (addingSelectInput.value.length !== 0) {
-      addingSelectSubmit.classList.remove("hidden");
-    } else {
-      hideSubmitClearInput();
-    }
-  });
-};
+
 
 // adding new type for form <select></select>
 addingSelectSubmit.addEventListener("click", (e) => {
@@ -232,7 +147,7 @@ addingSelectSubmit.addEventListener("click", (e) => {
   mealTypes.push(addingSelectInput.value);
 
   displayMealTypesForm();
-  hideSubmitClearInput();
+  functions.hideSubmitClearInput();
 
   addingSelectInput.classList.add("hidden");
   addingSelectAddBtn.textContent = "+";
@@ -246,20 +161,18 @@ addingSelectAddBtn.addEventListener("click", (e) => {
 
   if (addingSelectAddBtn.textContent === "+") {
     addingSelectAddBtn.textContent = "-";
-    showSubmit();
+    functions.showSubmit();
   } else {
     addingSelectAddBtn.textContent = "+";
-    hideSubmitClearInput();
+    functions.hideSubmitClearInput();
   }
 });
 
-const clearMealTypes = () => {
-  document.querySelectorAll(".adding_select").forEach((e) => e.remove());
-};
+
 
 // DIsplaying Meal types in form <select></select>
 export const displayMealTypesForm = () => {
-  clearMealTypes();
+  functions.clearMealTypes();
   const html = `<select id="type" class="adding_select" form="types">
   ${mealTypes
     .map(
@@ -281,7 +194,7 @@ addingBtn.addEventListener("click", (e) => {
   let animationEl = [];
 
   let type = addingSelect.options[addingSelect.selectedIndex].value;
-  let name = titleCase(addingInputName.value);
+  let name = functions.titleCase(addingInputName.value);
   let photo = addingInputImg.value;
   let ingrs = [];
   document
@@ -297,13 +210,13 @@ addingBtn.addEventListener("click", (e) => {
     messages.push("Name is required");
     animationEl.push();
   }
-  if (!isNumeric(price)) messages.push("Price should be a number");
+  if (!functions.isNumeric(price)) messages.push("Price should be a number");
   if (ingrs.length < 1 || ingrs.includes(""))
     messages.push("You cant add empty ingredients");
 
   if (!messages.length) {
     addBurger(type, name, photo, price, ingrs);
-    clearInputs();
+    fucntions.clearInputs();
     displayMealTypesMenu();
   } else {
     console.log(messages.join(", "), "ELOOOOOOOOOOOO");
@@ -331,7 +244,7 @@ export const menuAddEventListenerBtnDelete = () => {
         );
 
         variables.meals.splice(delMealIndex, 1);
-        clearMenu();
+        functions.clearMenuAdmin();
         script.displayMenu();
       }
     });
@@ -372,6 +285,4 @@ addingInputIngrMom.addEventListener("click", (e) => {
 });
 
 // Deleting Everything from Menu
-export const clearMenu = () => {
-  document.querySelectorAll(".menu_burger").forEach((e) => e.remove());
-};
+

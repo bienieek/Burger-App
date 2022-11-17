@@ -2,6 +2,7 @@ import * as admin from "./views/adminView.js";
 import * as orderProces from "./views/orderProces.js";
 import * as chefView from "./views/chefView.js";
 import * as variables from "./views/variables.js";
+import * as functions from "./views/functions.js";
 
 
 
@@ -106,7 +107,7 @@ btnLogin.addEventListener("click", (e) => {
       order.classList.add("hidden");
       chef.classList.remove("hidden");
       adding.classList.add("hidden");
-      admin.clearMenu();
+      functions.clearMenuAdmin();
       displayMenu();
     }
 
@@ -114,7 +115,7 @@ btnLogin.addEventListener("click", (e) => {
       order.classList.add("hidden");
       chef.classList.add("hidden");
       adding.classList.remove("hidden");
-      admin.clearMenu();
+      functions.clearMenuAdmin();
       displayMenu();
     }
 
@@ -144,7 +145,7 @@ btnLogout.addEventListener("click", (e) => {
   btnLogoutMom.classList.add("hidden");
 
   loginText.textContent = `Welcome!`;
-  admin.clearMenu();
+  functions.clearMenuAdmin();
   displayMenu();
 });
 
@@ -166,7 +167,7 @@ pwVisIconCon.addEventListener("click", () => {
 });
 
 const init = () => {
-  admin.getMealTypesMenu();
+admin.getMealTypesMenu();
   admin.displayMealTypesMenu();
   admin.displayMealTypesForm();
   displayMenu();

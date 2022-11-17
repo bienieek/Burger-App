@@ -1,27 +1,16 @@
-import { orders, clearAll } from "./orderProces.js";
+import * as order from "./orderProces.js";
 import * as variables from "./variables.js";
+import * as functions from "./functions.js";
 
-const order = document.querySelector(".order");
 const chefTextCon = document.querySelector(".chef_text-container");
 
-const chef = document.querySelector(".chef");
-const orderFormBuyer = document.querySelector(".order_form-buyer");
-const orderFormEmail = document.querySelector(".order_form-email");
-
-let finalOrders = [];
 const myEmail = "mati.bieniek133@gmail.com";
-
 const smtpHost = "smtp.elasticemail.com";
 const smtpPassword = "CB50D98E19A2A699E58597CACC4445CD983A";
 const smtpUsername = "mati.bieniek133@gmail.com";
 
-const getTime = () => {
-  let date = new Date();
+export let finalOrders = [];
 
-  let minutes = date.getMinutes();
-  let hour = date.getHours();
-  return `${hour}:${minutes}`;
-};
 
 const sendEmail = (buyer, buyerMail, order) => {
   Email.send({
@@ -38,41 +27,12 @@ const sendEmail = (buyer, buyerMail, order) => {
   );
 };
 
-let indexOfOrder = 0;
-const increaseIndex = () => {
-  indexOfOrder++;
-};
 
-// ORDER BURGERS BTN BUY event listener
-order.addEventListener("click", (e) => {
-  if (e.target && e.target.classList.contains("order_buy-btn")) {
-    let buyer = orderFormBuyer.value;
-    let email = orderFormEmail.value;
-    let mealTime = getTime();
 
-    let mealsPrice = 0;
-    let mealsIndex = orders.length;
 
-    for (let i = 0; i < orders.length; i++) {
-      orders[i].buyer = buyer;
-      orders[i].email = email;
-      orders[i].indexOfOrder = indexOfOrder;
-      orders[i].time = mealTime;
-
-      mealsPrice = mealsPrice + +orders[i].price;
-    }
-
-    finalOrders.push(...orders);
-    displayMealSummary(orders[0], mealsIndex, mealsPrice, orders); // pushing first item (alwaystexist)
-    clearAll();
-    increaseIndex();
-
-    // sendEmail(buyer, email, orders);
-  }
-});
 
 // ORder Burgers Function
-const displayMealSummary = (meal, mealsIndex, mealsPrice, allOrders) => {
+export const displayMealSummary = (meal, mealsIndex, mealsPrice, allOrders) => {
   const afterClickInfo = [];
 
   const html = `
@@ -134,6 +94,8 @@ const addingEvL = (MealsSummary, MealsSummaryBtn) => {
     }
   });
 
+
+  // adding to btnDone
   MealsSummaryBtn.addEventListener("click", (e) => {
     const container = e.target.closest(".chef_burger-container");
     const btnIndexOfOrder = e.target.dataset.indexOfOrder;
